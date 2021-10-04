@@ -1,6 +1,7 @@
 // entry file
 
 const MovingObject = require("./moving_object.js");
+const Asteroid = require("./asteroid.js");
 
 window.addEventListener('DOMContentLoaded', (event) => {
     // console.log('DOM fully loaded and parsed');
@@ -10,4 +11,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     window.MovingObject = MovingObject;
     window.ctx = ctx;
+    window.Asteroid = Asteroid;
 });

@@ -9,13 +9,23 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/asteroid.js":
+/*!*************************!*\
+  !*** ./src/asteroid.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const MovingObject = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\nconst { inherits, randomVec } = __webpack_require__(/*! ./utils */ \"./src/utils.js\");\n\n// const DEFAULT = {\n//     COLOR = '';\n//     RADIUS = ;\n// }\nfunction Asteroid(pos) {\n   MovingObject(options);\n   this.pos = pos;\n    this.color = options.color;\n    this.radius = options.radius;\n    this.vel = randomVec(10);\n};\ninherits(Asteroid, MovingObject);\n\n//# sourceURL=webpack://W9D1/./src/asteroid.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("// entry file\n\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\n\nwindow.addEventListener('DOMContentLoaded', (event) => {\n    // console.log('DOM fully loaded and parsed');\n    const canvas = document.getElementById('game-canvas')\n\n    const ctx = canvas.getContext('2d');\n\n    window.MovingObject = MovingObject;\n    window.ctx = ctx;\n});\n\n//# sourceURL=webpack://W9D1/./src/index.js?");
+eval("// entry file\n\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nconst Asteroid = __webpack_require__(/*! ./asteroid.js */ \"./src/asteroid.js\");\n\nwindow.addEventListener('DOMContentLoaded', (event) => {\n    // console.log('DOM fully loaded and parsed');\n    const canvas = document.getElementById('game-canvas')\n\n    const ctx = canvas.getContext('2d');\n\n    window.MovingObject = MovingObject;\n    window.ctx = ctx;\n    window.Asteroid = Asteroid;\n});\n\n//# sourceURL=webpack://W9D1/./src/index.js?");
 
 /***/ }),
 
@@ -26,6 +36,16 @@ eval("// entry file\n\nconst MovingObject = __webpack_require__(/*! ./moving_obj
 /***/ ((module) => {
 
 eval("function MovingObject(options) {\n    this.pos = options.pos;\n    this.vel = options.vel;\n    this.radius = options.radius;\n    this.color = options.color;\n};\n\nMovingObject.prototype.draw = function(ctx) {\n    ctx.beginPath();\n    ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);\n    ctx.fillStyle = 'gray';\n    ctx.fill();\n};\n\nMovingObject.prototype.move = function(ctx) {\n    // debugger\n    const dY = this.vel[1];\n    const dX = this.vel[0];\n    // debugger\n    this.pos = [this.pos[0] + dX, this.pos[1] + dY];\n    // debugger\n};\n\n\nmodule.exports = MovingObject;\n\n\n\n//# sourceURL=webpack://W9D1/./src/moving_object.js?");
+
+/***/ }),
+
+/***/ "./src/utils.js":
+/*!**********************!*\
+  !*** ./src/utils.js ***!
+  \**********************/
+/***/ ((module) => {
+
+eval("const Util = {\n    inherits(childClass, parentClass) {\n       function Surrogate() {}\n        Surrogate.prototype = parentClass.prototype;\n        childClass.prototype = new Surrogate();\n        childClass.prototype.constructor = childClass;\n    },\n    randomVec(length) {\n        const deg = 2 * Math.PI * Math.random();\n        return Util.scale([Math.sin(deg), Math.cos(deg)], length);\n    },\n    // Scale the length of a vector by the given amount.\n    scale(vec, m) {\n        return [vec[0] * m, vec[1] * m];\n    }\n};\n\nmodule.exports = Util;\n\n//# sourceURL=webpack://W9D1/./src/utils.js?");
 
 /***/ })
 
